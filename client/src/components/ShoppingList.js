@@ -1,51 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { v4 as uuid } from 'uuid';
+// Importing actionCreators
+import { getItems, deleteItem } from '../redux/action/itemActions';
+
+import ItemModal from './ItemModal';
 
 function ShoppingList (){
-  const [items, setItems] = useState([
-    { id: uuid(), name: 'Bat' },
-    { id: uuid(), name: 'Ball' },
-    { id: uuid(), name: 'Stump' },
-    { id: uuid(), name: 'Cap' }
-  ]);
+  const dispatch = useDispatch();
+  const items = useSelector(state=> state.items.docs);
 
-  const addItem = (e) => {
-    let name = prompt('Enter Item : ');
-    if (name === '' || name === null) { alert('Empty!'); return false; }
-    setItems(items => (
-      [...items, { id: uuid(), name }]
-    ));
-    
-  }
+  useEffect(() => {
+    console.log('GET');
+    dispatch(getItems());
+  }, []);
 
   return(
     <Container>
 
-      <Button
-        color="dark"
-        onClick={addItem}
-        className="mb-4"
-      >
-        Add Item +
-      </Button>
+      <ItemModal />
 
       <ListGroup>
         <TransitionGroup>
           {items.map((item) => (
-            <CSSTransition timeout={500} classNames="fade">
-              <ListGroupItem key={item.id}>
+            <CSSTransition key={item._id} timeout={500} classNames="fade">
+              <ListGroupItem >
               
                 <Button
                   className="remove-btn"
                   color="danger"
                   size="sm"
-                  onClick={() => {
-                    setItems(items => (
-                      items.filter(entry => entry.id !== item.id)
-                    ))
-                  }}
+                  onClick={(e) => dispatch(deleteItem(item._id))}
                 >&times;</Button>
                 {item.name}
 
