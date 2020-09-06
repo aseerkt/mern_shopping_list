@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, NavItem, NavLink, Nav, Navbar } from 'reactstrap';
 
-function BottomNavbar() {
+function Footer() {
   return (
     <div className='fixed-bottom bg-light'>
       <Container>
@@ -37,4 +37,4 @@ function BottomNavbar() {
   );
 }
 
-export default BottomNavbar;
+export default Footer;

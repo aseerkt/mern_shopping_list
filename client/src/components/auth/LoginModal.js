@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { lo, loginUser, logoutUser } from '../../redux/action/authActions';
+import { loginUser } from '../../redux/action/authActions';
 import { LOGIN_FAIL } from '../../redux/action/actionTypes';
 import {
   Modal,
@@ -31,7 +31,7 @@ function LoginModal() {
 
   useEffect(() => {
     dispatch(clearErrors());
-  }, [isOpen]);
+  }, [isOpen, dispatch]);
 
   const onSubmit = (e) => {
     e.preventDefault();

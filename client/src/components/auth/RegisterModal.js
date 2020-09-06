@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { registerUser, logoutUser } from '../../redux/action/authActions';
-import { returnErrors, clearErrors } from '../../redux/action/errorActions';
+import { registerUser } from '../../redux/action/authActions';
+import { clearErrors } from '../../redux/action/errorActions';
 import { REGISTER_FAIL } from '../../redux/action/actionTypes';
 import {
   NavLink,
@@ -30,7 +30,7 @@ function RegisterModal() {
 
   useEffect(() => {
     dispatch(clearErrors());
-  }, [isOpen]);
+  }, [isOpen, dispatch]);
 
   const toggleModal = (e) => setIsOpen(!isOpen);
 

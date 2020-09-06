@@ -10,7 +10,6 @@ import {
   NavItem,
   NavLink,
   Container,
-  NavbarText,
 } from 'reactstrap';
 
 import RegisterModal from './auth/RegisterModal';
@@ -19,7 +18,6 @@ import LoginModal from './auth/LoginModal';
 function AppNavbar() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const user = useSelector((state) => state.auth.user);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);

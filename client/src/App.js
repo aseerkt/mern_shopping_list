@@ -10,7 +10,7 @@ import ShoppingList from './components/ShoppingList';
 // Import Actions
 import { loadUser } from './redux/action/authActions';
 import { getItems } from './redux/action/itemActions';
-import BottomNavbar from './components/BottomNavbar';
+import BottomNavbar from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     dispatch(loadUser());
     dispatch(getItems());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='App'>
