@@ -1,46 +1,42 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 // Importing actionCreators
-import { getItems, deleteItem } from '../redux/action/itemActions';
+import { deleteItem } from '../redux/action/itemActions';
 
 import ItemModal from './ItemModal';
 
-function ShoppingList (){
+function ShoppingList() {
   const dispatch = useDispatch();
-  const items = useSelector(state=> state.items.docs);
+  const items = useSelector((state) => state.items.docs);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  useEffect(() => {
-    console.log('GET');
-    dispatch(getItems());
-  }, []);
-
-  return(
+  return (
     <Container>
-
       <ItemModal />
 
       <ListGroup>
         <TransitionGroup>
           {items.map((item) => (
-            <CSSTransition key={item._id} timeout={500} classNames="fade">
-              <ListGroupItem >
-              
-                <Button
-                  className="remove-btn"
-                  color="danger"
-                  size="sm"
-                  onClick={(e) => dispatch(deleteItem(item._id))}
-                >&times;</Button>
+            <CSSTransition key={item._id} timeout={500} classNames='fade'>
+              <ListGroupItem>
+                {isAuthenticated ? (
+                  <Button
+                    className='remove-btn'
+                    color='danger'
+                    size='sm'
+                    onClick={(e) => dispatch(deleteItem(item._id))}
+                  >
+                    &times;
+                  </Button>
+                ) : null}
                 {item.name}
-
               </ListGroupItem>
             </CSSTransition>
           ))}
         </TransitionGroup>
       </ListGroup>
-
     </Container>
   );
 }

@@ -1,6 +1,5 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import './App.css';
 
@@ -8,15 +7,25 @@ import './App.css';
 import AppNavbar from './components/AppNavbar';
 import ShoppingList from './components/ShoppingList';
 
+// Import Actions
+import { loadUser } from './redux/action/authActions';
+import { getItems } from './redux/action/itemActions';
+import BottomNavbar from './components/BottomNavbar';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+    dispatch(getItems());
+  }, []);
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <AppNavbar />
-        <ShoppingList />
-      </div>
-    </Provider>
+    <div className='App'>
+      <AppNavbar />
+      <ShoppingList />
+      <BottomNavbar />
+    </div>
   );
 }
 
