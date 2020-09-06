@@ -1,7 +1,6 @@
 import React , {useState} from 'react';
 import { addItem } from '../redux/action/itemActions';
 import { useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
 import {
   Button,
   Modal,

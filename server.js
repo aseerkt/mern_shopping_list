@@ -4,16 +4,13 @@ const mongoose = require('mongoose');
 // Make environmental variables visible
 require('dotenv').config();
 
-// Import Item Router
-const items = require('./routes/api/items');
-
 const app = express();
 
 // body-parser middleware
 app.use(express.json());
 
 // DB Config
-const db = process.env.MONGO_URI;
+const db = process.env.MONGO_LOCAL_URI;
 
 // Connect to MongoDB
 mongoose
@@ -26,7 +23,9 @@ mongoose
   .catch(err => console.log(err));
 
 // Use Routes
-app.use('/api/items', items);
+app.use('/api/items', require('./routes/api/items'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth',  require('./routes/api/auth'));
 
 const port = process.env.PORT || 5000;
 
