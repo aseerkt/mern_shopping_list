@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // Make environmental variables visible
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const app = express();
 
