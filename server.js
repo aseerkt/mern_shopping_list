@@ -20,7 +20,7 @@ mongoose
     useCreateIndex: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('Connect to MongoDB server'))
+  .then(() => console.log('Connected Successfully to MongoDB server'))
   .catch((err) => console.log(err));
 
 // Use Routes
