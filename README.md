@@ -1,6 +1,6 @@
 # MERN Shopping List
 
-Simple MERN Stack application powered by Node JWT Auth and Redux. This app uses **_Functional Components_** with **_Hooks_** for Redux and React State Management
+> Shopping List app powered by MERN, Node JWT Auth and Redux. This app uses **_Functional Components_** with **_Hooks_** for Redux and React State Management
 
 ## Installing app on locally
 
